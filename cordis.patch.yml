@@ -1,0 +1,5 @@
+# dsh-jarvis-boot bundle patch: mounts the plugin into a profile.
+# `dsh plugin --profile <name> add dsh-jarvis-boot` writes the same row.
+- insert:
+    - id: jarvis-boot
+      name: 'dsh-jarvis-boot'

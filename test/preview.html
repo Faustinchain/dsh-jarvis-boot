@@ -1,0 +1,51 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<title>dsh-jarvis-boot · preview</title>
+<style>
+  html, body { margin: 0; height: 100%; }
+  body {
+    background: #101014;
+    color: #8ab4ff;
+    font: 14px/1.6 system-ui, sans-serif;
+    display: grid;
+    place-items: center;
+  }
+  .app { opacity: .9; text-align: center; }
+  .app h1 { font-size: 18px; font-weight: 600; letter-spacing: .2em; }
+  .app p { color: #5f6b8a; font-size: 12px; }
+</style>
+<script>
+  // Stand-in for the host module loader: captures the registration so the
+  // preview can materialize the plugin exactly like the real shell does.
+  window.__ModuleLoader__ = {
+    load(mod) { window.__dshModule = mod; }
+  };
+</script>
+</head>
+<body>
+  <div class="app">
+    <h1>DEEPSEEK HARNESS</h1>
+    <p>app behind the overlay — anything here is covered while boot plays</p>
+  </div>
+  <script src="../lib/client.js"></script>
+  <script>
+    (function () {
+      const mod = window.__dshModule;
+      if (!mod) throw new Error("client.js did not register");
+      const exports = mod.factory(() => { throw new Error("no shared module available in preview"); });
+      exports.apply({ effect(fn) { fn(); } });
+
+      const q = new URLSearchParams(location.search);
+      setTimeout(() => {
+        const api = window.__JARVIS_BOOT__;
+        if (!api) return;
+        if (q.has("seek")) api.seek(Number(q.get("seek")));
+        if (q.has("ready")) api.skip();
+        if (q.has("dismiss")) api.dismiss();
+      }, 50);
+    })();
+  </script>
+</body>
+</html>

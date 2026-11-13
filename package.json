@@ -1,0 +1,53 @@
+{
+  "name": "dsh-jarvis-boot",
+  "version": "0.1.0",
+  "description": "J.A.R.V.I.S.-style arc-reactor boot animation for the DeepSeek Harness web GUI: HUD rings, boot log, progress gate, and a click-to-enter READY plate.",
+  "type": "module",
+  "main": "./lib/index.js",
+  "exports": {
+    ".": "./lib/index.js",
+    "./client": "./lib/client.js",
+    "./package.json": "./package.json"
+  },
+  "files": [
+    "lib",
+    "cordis.patch.yml",
+    "README.md",
+    "CHANGELOG.md",
+    "LICENSE"
+  ],
+  "keywords": [
+    "dsh",
+    "dsh-plugin",
+    "deepseek-harness",
+    "cordis",
+    "boot-animation",
+    "splash",
+    "jarvis",
+    "iron-man",
+    "hud"
+  ],
+  "license": "MIT",
+  "author": "Faustinchain",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Faustinchain/dsh-jarvis-boot.git"
+  },
+  "homepage": "https://github.com/Faustinchain/dsh-jarvis-boot#readme",
+  "bugs": {
+    "url": "https://github.com/Faustinchain/dsh-jarvis-boot/issues"
+  },
+  "engines": {
+    "node": ">=22.5.0"
+  },
+  "dsh": {
+    "bundle": {
+      "patch": "./cordis.patch.yml"
+    },
+    "client": {
+      "platform": "web",
+      "inject": [],
+      "external": []
+    }
+  }
+}
