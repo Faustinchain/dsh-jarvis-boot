@@ -1,5 +1,12 @@
 # Changelog
 
+## 0.2.3 — 2026-11-14
+
+- 皮肤改用「内联 `!important`」写进 `html` 与 `body`：`style.setProperty(name, value, "important")` 的优先级高于任何样式表、`@layer` 和宿主主题运行时后写入的规则，不再赌层叠顺序；
+- 去掉 `localStorage` 里的皮肤开关判断（0.2.1 可能把它写成过 `off`，导致 0.2.2 静默不生效）；想关皮肤直接卸插件；
+- 就绪页底部新增自检读数 `BUILD <版本> · SKIN ON #0a0708`，一眼能看出「版本没更新」还是「样式没压住」；
+- 修 `body[data-ds-dark-theme]` 只在缺失时补的边界情况。
+
 ## 0.2.2 — 2026-11-13
 
 - 皮肤改为直接注入样式表，不再依赖宿主主题服务：宿主把 `--dsw-*` token 定义在 `body` 与 `body[data-ds-dark-theme]` 上，插件在 `head` 末尾追加一条 `!important` 覆盖，两种配色都被压住，内联样式也盖得住；
