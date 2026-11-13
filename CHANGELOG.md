@@ -1,10 +1,15 @@
 # Changelog
 
+## 0.2.2 — 2026-11-13
+
+- 皮肤改为直接注入样式表，不再依赖宿主主题服务：宿主把 `--dsw-*` token 定义在 `body` 与 `body[data-ds-dark-theme]` 上，插件在 `head` 末尾追加一条 `!important` 覆盖，两种配色都被压住，内联样式也盖得住；
+- 同时给 `body` 补 `data-ds-dark-theme` 与 `color-scheme: dark`，让不读 token 的深色规则（滚动条、原生控件）也跟着走；
+- 主题服务仍然会尝试注册（有的话就能在外观里看到 `jarvis` 并手动切回），拿不到也不影响皮肤；
+- 想关掉皮肤：`localStorage.setItem("dsh-jarvis-boot:skin", "off")`。
+
 ## 0.2.1 — 2026-11-13
 
-- 内置皮肤改为加载即自动套用：第三方主题 id 只存在内存里，重启会退回内置主题，所以每次加载时重新选中；
-- 如果在外观里主动换回 `light` / `dark` / `system`，会记下这个选择、不再覆盖；之后重新选回 `jarvis` 又会恢复自动套用；
-- 判断依据是 `documentElement` 上的 `data-ds-theme-source`，插件不碰宿主的设置存储。
+- 尝试在加载时自动选中 `jarvis` 主题。该版本依赖 `ctx.theme` 注入，在部分构建上拿不到服务，皮肤不生效，已被 0.2.2 取代。
 
 ## 0.2.0 — 2026-11-13
 

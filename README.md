@@ -52,11 +52,17 @@ Copy-Item .\lib "C:\Users\<you>\.dsh\profiles\desktop\node_modules\dsh-jarvis-bo
 
 ## 内置皮肤
 
-插件启动时会向宿主的主题服务注册一个叫 `jarvis` 的主题（`ctx.theme.register`），覆盖约 80 个 `--dsw-*` 语义 token：暖黑底、金色强调、红色主按钮、金描边、暗红气泡。
+插件会在页面加载时把一套 `jarvis` 配色直接写进样式表：暖黑底、金色强调、红色主按钮、金描边、暗红气泡。宿主把 `--dsw-*` token 定义在 `body` 和 `body[data-ds-dark-theme]` 上，插件在 `head` 末尾追加一条带 `!important` 的覆盖，所以浅色、深色两张表都会被压住，不需要手动选主题。
 
-启用方式：**设置 → 通用 → 外观**，在选择器里选 `jarvis`。选完会持久化到当前浏览器，下次直接生效。
+如果宿主暴露了主题服务，插件也会顺手注册一个同名主题，在 **设置 → 通用 → 外观** 里能看到 `jarvis`；有它就能一眼切回深色。
 
-不需要皮肤就继续用 `dark` / `system`，插件不会强行改你的主题。
+不想要这套皮肤，在控制台执行一次即可，之后每次加载都会尊重这个选择：
+
+```js
+localStorage.setItem("dsh-jarvis-boot:skin", "off");
+```
+
+想恢复，删掉这条记录或把它设回 `"on"`。
 
 ## 调试入口
 
