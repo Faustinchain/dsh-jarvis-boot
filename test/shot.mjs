@@ -59,7 +59,7 @@ await send("Page.navigate", { url });
 await sleep(1200);
 const result = await send("Runtime.evaluate", { expression: expr, returnByValue: true, awaitPromise: true });
 const value = result?.result?.value;
-await sleep(450);
+await sleep(Number(process.env.SHOT_WAIT ?? 450));
 const shot = await send("Page.captureScreenshot", { format: "png" });
 fs.writeFileSync(out, Buffer.from(shot.data, "base64"));
 console.log(JSON.stringify({ value, out, bytes: fs.statSync(out).size }));

@@ -12,6 +12,8 @@
 - **不锁界面**：播放中按 `Esc` 直接跳就绪；就绪后点任意处 / `Enter` / 空格进入；播放中也可以点「跳过引导」。
 - **零依赖、单文件**：`lib/client.js` 约 20KB，没有构建步骤，没有外部字体或图片。
 - **Shadow DOM 隔离**：样式不会漏进宿主，宿主的样式也压不扁 HUD。
+- **闸门式转场**：点进主界面时，覆盖层从中间一分为二向上下滑出，接缝带一条金色发光线。
+- **内置皮肤**：附带 `jarvis` 主题（暖黑底、金强调、红主按钮），在「设置 → 通用 → 外观」里选上就是同一套味道。
 - **可关**：`window.__JARVIS_BOOT_DISABLED__ = true` 直接不挂载；或从 profile 的 `bundles` 里删掉本插件。
 - **尊重系统偏好**：检测到 `prefers-reduced-motion: reduce` 时直接进就绪态。
 
@@ -47,6 +49,14 @@ Copy-Item .\lib "C:\Users\<you>\.dsh\profiles\desktop\node_modules\dsh-jarvis-bo
 ```
 
 改完 `lib/client.js` 后重启 DSH 生效。
+
+## 内置皮肤
+
+插件启动时会向宿主的主题服务注册一个叫 `jarvis` 的主题（`ctx.theme.register`），覆盖约 80 个 `--dsw-*` 语义 token：暖黑底、金色强调、红色主按钮、金描边、暗红气泡。
+
+启用方式：**设置 → 通用 → 外观**，在选择器里选 `jarvis`。选完会持久化到当前浏览器，下次直接生效。
+
+不需要皮肤就继续用 `dark` / `system`，插件不会强行改你的主题。
 
 ## 调试入口
 

@@ -1,7 +1,7 @@
 {
   "name": "dsh-jarvis-boot",
-  "version": "0.1.0",
-  "description": "J.A.R.V.I.S.-style arc-reactor boot animation for the DeepSeek Harness web GUI: HUD rings, boot log, progress gate, and a click-to-enter READY plate.",
+  "version": "0.2.0",
+  "description": "J.A.R.V.I.S.-style arc-reactor boot animation for the DeepSeek Harness web GUI: HUD rings, boot log, progress gate, a shutter-split reveal, and an optional red/gold inner skin.",
   "type": "module",
   "main": "./lib/index.js",
   "exports": {
